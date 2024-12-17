@@ -57,13 +57,55 @@ delimiter ;
 call rock('Mumbai', @count); 
 output:4
 ________________________________________________________________________________________
+select * from dataofcustomer where age>40;
+create a store procedure for this query,
 
+delimiter //
+create procedure john(in obeject int)
+begin 
+	select * from dataofcustomer where age>obeject;
+end;
+//
+delimiter ;
+call john(40);
+__________________________________________________________________________________
 
+select * from dataofcustomer where age<40;
+create a store procedure for this query,
 
-
-
-
-
+delimiter //
+create procedure john(in obeject int)
+begin 
+	select * from dataofcustomer where age<obeject;
+end;
+//
+call john(40);
+________________________________________________________________________________
+select * from dataofcustomer where occupation='Service'
+and age>40;
+create a store procedure for this query
+delimiter //
+create procedure GetCustomer(in worke varchar(100), in aged int)
+begin
+	select * from dataofcustomer where occupation=worke and age>aged;
+end;
+//
+delimiter ;
+call GetCustomer('Service',40);
+______________________________________________________________________________________
+select * from dataofcustomer where occupation='Service' and age<40;
+create a store procedure for this query
+delimiter //
+CREATE PROCEDURE GetCustomer(in worke varchar(100), in aged int)
+BEGIN
+    SELECT * 
+    FROM dataofcustomer 
+    WHERE occupation = worke AND age < aged;
+END;
+//
+delimiter ;
+call GetCustomer('Service',40);
+_______________________________________________________________________________________
 
 
 

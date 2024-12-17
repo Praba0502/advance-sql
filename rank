@@ -63,7 +63,12 @@ id name   mark    rnk  dense_rank   row number
 5	nithish  492     5     4              6
 6	kumar	   492     5     4              7
 8	rajesh	 490     8     5              8
-  
+________________________________________________________
+select *, dense_rank() over(partition by status order by Income desc) product_rnk
+from raj where age>30 and pysical>3;
+
+we have to get a rank group by the status and age is greater than 30 and pysical less than 3.
+
 
 
 

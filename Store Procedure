@@ -1,0 +1,137 @@
+# count the customers
+
+delimiter //
+create procedure acustomer()
+begin
+	declare customercount int;
+    select count(*) into customercount
+    from dataofcustomer where city='Delhi'; 
+    
+    select customercount;
+
+end;
+//
+delimiter ;
+
+how to call the procedure:  call acustomer();
+
+
+How to drop the store procedure: DROP PROCEDURE IF EXISTS MyStoredProcedure;
+
+
+simple age=46 create a store procedure:
+delimiter //
+create procedure tac(in writeen int)
+begin
+	select * from dataofcustomer where age=writeen;
+end;
+//
+delimiter ;
+
+call tac(46);
+____________________________________________________________________________________________
+delimiter // I'm used in function here
+create procedure rock(in location varchar(100))
+begin
+	select * from dataofcustomer where city=location;
+end;
+//
+delimiter ;
+
+output:
+C00005	Naveen	Chandra	Aedekar	Mumbai	23	8976523190	Service	1976-09-19
+C00006	Chitresh		Barwe	Mumbai	18	7651298321	Student	1992-11-06
+C00007	Amit	Kumar	Borkar	Mumbai	76	9875189761	Student	1981-09-06
+C00008	Nisha		Damle	Mumbai	43	7954198761	Service	1975-12-03						
+
+
+both are same
+____________________________________________________________________________________________
+delimiter // I'm used out function here
+create procedure rock(in location varchar(100), out acount int)
+begin
+	select count(*) acount from dataofcustomer where city=location;
+end;
+//
+delimiter ;
+call rock('Mumbai', @count); 
+output:4
+________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

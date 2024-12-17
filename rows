@@ -1,0 +1,30 @@
+#intha query la vanthu athukku munnadi irukkara date um present date future date moonayum add panni oru column ahh create pannaum
+select *, sum(sales) over(order by Date rows between 1 preceding and 1 following)total_sum_of_yday_tday
+from dataset;
+________________________________________________________________________________________________________________________________________
+
+#enakku date 8 kku mela venumna atha mention panna namakku kedachirum
+select *, sum(sales) over(order by Date rows between 1 preceding and 1 following)total_sum_of_yday_tday
+from dataset where id>8;
+_________________________________________________________________________________________________________________
+#enakku date 8 kku mela venumna atha mention panna namakku kedachirum
+select *, sum(sales) over(order by Date rows between 1 preceding and 1 following)total_sum_of_yday_tday
+from dataset where id<8;
+______________________________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

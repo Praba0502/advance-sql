@@ -1,0 +1,251 @@
+create table school(id int, name varchar(100), mark int);
+insert into school values
+(1,'praba',498),
+(2,'karan',496),
+(3,'sajay',493),
+(4,'pranav',492),
+(5,'nithish',492),
+(6,'kumar',492),
+(7,'ram',493),
+(8,'rajesh',490);
+
+select * from school;
+
+select *, rank() over(order by mark desc) rnk
+from school;
+output:
+1	praba	498	1
+2	karan	496	2
+3	sajay	493	3
+7	ram	493	3
+4	pranav	492	5
+5	nithish	492	5
+6	kumar	492	5
+8	rajesh	490	8
+
+______________________________________________
+dense_rank()
+select *, dense_rank() over(order by mark desc) den_rnk
+from school;
+output:
+1	praba	498	1
+2	karan	496	2
+3	sajay	493	3
+7	ram	493	3
+4	pranav	492	4
+5	nithish	492	4
+6	kumar	492	4
+8	rajesh	490	5
+_____________________________________________________
+row_number()
+select *, row_number() over(order by mark desc) row_num
+from school;
+1	praba	498	1
+2	karan	496	2
+3	sajay	493	3
+7	ram	493	4
+4	pranav	492	5
+5	nithish	492	6
+6	kumar	492	7
+8	rajesh	490	8
+______________________________________________________
+
+select *, rank() over(order by mark desc)rnk, 
+dense_rank() over(order by mark desc) den_rnk,
+row_number() over(order by mark desc) row_num from school;
+
+id name   mark    rnk  dense_rank   row number
+1	praba	   498     1     1              1
+2	karan	   496     2     2              2
+3	sajay 	 493     3     3              3
+7	ram      493     3     3              4 
+4	pranav	 492     5     4              5
+5	nithish  492     5     4              6
+6	kumar	   492     5     4              7
+8	rajesh	 490     8     5              8
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

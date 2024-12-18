@@ -1,3 +1,5 @@
+moving average (or) rolling average (or) rolling means
+__________________________________________________________________________________________________________________
 find the moving average 3days(yesterday, today and tomorrow)
 id   date       sales
 1	  2021-01-01	52

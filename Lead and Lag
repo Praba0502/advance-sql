@@ -46,19 +46,65 @@ unbounded preceding and unbounded following)*100,0)percent from cricket;
 
 _____________________________________________________________________________________________________________________
 
+count of years in how years they scored runs less than previous years
+if player scored less runs than the previous year so, we want to count that years
+
+step by step process:
+ * select Player, Year, Runs, lag(Runs) over(partition by Player order by Year)-Runs previous_year
+from cricket
+* select *, case when previous_year>0 then 1 else 0 end as more_runs from
+(select Player, Year, Runs, lag(Runs) over(partition by Player order by Year)-Runs previous_year
+from cricket) a
+
+@# this is the final and exact output:
+
+select Player, sum(more_runs) from
+(select *, case when previous_year>0 then 1 else 0 end as more_runs from
+(select Player, Year, Runs, lag(Runs) over(partition by Player order by Year)-Runs previous_year
+from cricket) a) b group by Player;
+_____________________________________________________________________________________________________________________
+find the leading 
+select Player, sum(more_runs) from
+(select *, case when previous_year>0 then 1 else 0 end as more_runs from
+(select Player, lead(Runs) over(partition by Player order by Year)-Runs previous_year
+from cricket) a) b group by Player;
 
 
 _____________________________________________________________________________________________________________________
+count number of years in which rohit scored more than virat
+
+##player name order wise la varathala namakku rohit mattum kedaikum
+select Player, Year, Runs, lead(Runs) over(partition by year order by Player)runs_scored
+from cricket;
+
+##null values ahh remove pannita rohit oda values kedachirum
+select * from
+(select Player, Year, Runs, lead(Runs) over(partition by year order by Player)runs_scored
+from cricket)a where runs_scored is not null;
+
+#select *, runs_scored- Runs as leading_runs from
+(select Player, Year, Runs, lead(Runs) over(partition by year order by Player)runs_scored
+from cricket)a where runs_scored is not null;
+
+#$#negative runs vanthu rohit virat ahh vida adhigama score adichirukka
+select *, case when diff<0 then 1 else 0 end as diff_runs from
+(select *, runs_scored- Runs as diff from
+(select Player, Year, Runs, lead(Runs) over(partition by year order by Player)runs_scored
+from cricket)a where runs_scored is not null) b;
 
 
-
+select Player, sum(diff_runs) from
+(select *, case when diff<0 then 1 else 0 end as diff_runs from
+(select *, runs_scored- Runs as diff from
+(select Player, Year, Runs, lead(Runs) over(partition by year order by Player)runs_scored
+from cricket)a where runs_scored is not null) b)c group by Player;
 _____________________________________________________________________________________________________________________
-
-
-
-_____________________________________________________________________________________________________________________
-
-
+#prev_year<Runs<next_year
+select Player, sum(increase) from
+(select*, case when prev_year<Runs and Runs<next_year then 1 else 0 end as increase from
+(select Player, Year, Runs, lag(Runs) over(partition by Player order by Year) prev_year,
+lead(Runs) over (partition by Player order by Year) next_year
+from cricket) a)b group by Player;
 
 _____________________________________________________________________________________________________________________
 

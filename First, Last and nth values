@@ -30,6 +30,48 @@ from dataset;
 
 Here also you should mention the unbounded preceding and unbounded following
 
+_____________________________________________________________________________________________________________________-
+
+rohit	2015	1532	1
+rohit	2013	1453	1
+rohit	2014	1233	1
+rohit	2022	674	1
+rohit	2021	642	1
+virat	2013	1245	1
+virat	2014	1212	1
+virat	2012	1020	1
+virat	2015	743	1
+virat	2020	687	1
+rohit	2016	532	2
+rohit	2011	478	2
+rohit	2008	432	2
+rohit	2010	432	2
+rohit	2020	423	2
+virat	2011	533	2
+virat	2018	457	2
+virat	2019	423	2
+virat	2010	348	2
+virat	2016	323	2
+rohit	2012	334	3
+rohit	2019	184	3
+rohit	2009	173	3
+rohit	2017	121	3
+rohit	2018	105	3
+virat	2009	235	3
+virat	2008	159	3
+virat	2022	146	3
+virat	2017	124	3
+virat	2021	103	3
+
+ntile
+
+we have to divide the dataset based on the ntile
+
+*select *, ntile(3) over(partition by Player order by Runs desc)n from cricket;
+final query:
+select *, case when a.n=1 then 'High score' when a.n=2 then 'medium' else 'low score' end as score_range
+from
+(select *, ntile(3) over(partition by Player order by Runs desc)n from cricket) a; 
 
 
 

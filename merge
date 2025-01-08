@@ -1,0 +1,163 @@
+
+
+
+
+
+create table writer(emp_id int, first_name varchar(50),last_name varchar(50),salary int,
+manager_id int,dep_id int);
+
+insert into writer 
+values(101,'john','cena',17000,100,90),
+(102,'under','taker',20000,101,90),
+(103,'robert','william',9000,102,60),
+(104,'rock','master',6000,103,60);
+
+select * from writer;
+
+
+create table reader(emp_id int, first_name varchar(50),last_name varchar(50),salary int,
+manager_id int,dep_id int);
+
+insert into reader
+values(101,'john','cena',17000,100,90),
+(102,'under','taker',17000,101,90),
+(105,'john','wick',4800,103,60),
+(106,'joseph','vijay',4800,103,60);
+
+#source table 
+merge reader as r
+using writer as w 
+on r.emp_id=w.emp_id
+
+when matched and w.salary<>r.salary and w.manager_id <>r.manager_id
+then 
+update set
+r.first_name= w.first_name,
+r.last_name= w.last_name,
+r.salary= w.salary,
+r.manager_id= w.manager_id,
+r.dep_id= r.dep_id
+
+when not matched by source then
+delete;
+____________________________________________________________________________________________________
+target la update pannitu then extra irukkara rows ahh delete pannurom
+
+merge reader as r
+using writer as w 
+on r.emp_id=w.emp_id
+
+when matched 
+then
+update set
+r.first_name= w.first_name,
+r.last_name= w.last_name,
+r.salary= w.salary,
+r.manager_id= w.manager_id,
+r.dep_id= w.dep_id
+
+when not matched by target then
+insert(emp_id,first_name,last_name,salary,manager_id,dep_id)
+values(w.emp_id,w.first_name,w.last_name,w.salary,w.manager_id,w.dep_id)
+
+when not matched by source then
+delete;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

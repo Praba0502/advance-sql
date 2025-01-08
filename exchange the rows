@@ -31,12 +31,22 @@ select a.seatid,isnull(b.name,a.name) st_name from student a left join student b
 (case when a.seatid%2= 0 then a.seatid-1 when a.seatid%2=1 then a.seatid+1 end)=b.seatid;
 
 # isnull(b.name,a.name) inga vanthu null values ah iruntha a.name ahh fill pannunu sollirukkom
+--------------------------------------------------------------------------------------------------------------------------------
 
+table1:
+id  name      amount
+1	  n1	      5723
+2	  n2	      3245
+3  	n1-online	6433
+4  	n2-online	3678
 
+table2:
+name   state
+n1	    s1
+n2	    s2
 
-
-
-
+select a.*,b.state from table1 a left join table2 b on
+(case when a.name like '%n1%' then 'n1' when a.name like '%n2%' then 'n2' end)=b.name;
 
 
 

@@ -1,0 +1,42 @@
+input:
+seatid name
+1	      N1
+2      	N2
+3      	N3
+4      	N4
+5	      N5
+
+
+output:
+
+seatid name
+1	      N2
+2      	N1
+3      	N4
+4      	N3
+5	      N5
+
+create table student(seatid int, name varchar(50));
+
+insert into student values
+(1,'N1'),
+(2,'N2'),
+(3,'N3'),
+(4,'N4'),
+(5,'N5');
+
+select * from student;
+
+select a.seatid,isnull(b.name,a.name) st_name from student a left join student b on
+(case when a.seatid%2= 0 then a.seatid-1 when a.seatid%2=1 then a.seatid+1 end)=b.seatid;
+
+# isnull(b.name,a.name) inga vanthu null values ah iruntha a.name ahh fill pannunu sollirukkom
+
+
+
+
+
+
+
+
+
